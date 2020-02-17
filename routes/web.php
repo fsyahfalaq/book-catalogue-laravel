@@ -11,9 +11,15 @@
 |
 */
 
+use App\Book;
+
 Route::get('/', function () {
-    return view('homepage');
+    $books = Book::all();
+    
+    return view('homepage')
+            ->with('books', $books);
 });
 
 Route::get('/new-book', 'bookController@create');
 Route::post('/new-book', 'bookController@store')->name('book.store');
+Route::get('/book/{id}', 'bookController@show');

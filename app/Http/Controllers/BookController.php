@@ -32,7 +32,13 @@ class BookController extends Controller
         $book->category = $request->category;
         $book->save();
 
-        dd($book);
-        // return back();
+        return back();
+    }
+
+    function show($id) {
+        $book = Book::find($id);
+
+        return view('book.show')
+                ->with('book', $book);
     }
 }
