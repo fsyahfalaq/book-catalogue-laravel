@@ -25,3 +25,4 @@ Route::post('/new-book', 'bookController@store')->name('book.store');
 Route::get('/book/{id}', 'bookController@show');
 Route::get('/book/{id}/edit', 'bookController@edit');
 Route::put('/book/{id}', 'bookController@update')->name('book.update');
+Route::delete('/book/{id}', 'bookController@destroy');

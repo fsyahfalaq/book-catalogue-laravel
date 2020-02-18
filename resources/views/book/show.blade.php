@@ -13,7 +13,14 @@
             <p class="card-text">
               {{ $book->synopsis }}
             </p>
-            <a href="/book/{{ $book->id }}/edit" class="btn btn-outline-secondary">Edit</a>
+            <div style="display:inline-block">
+              <form action="/book/{{ $book->id }}" method="post">
+                @method('DELETE')
+                @csrf
+                <a href="/book/{{ $book->id }}/edit" class="btn btn-outline-secondary">Edit</a>
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+              </form>
+            </div>
           </div>
         </div>
         <!-- /.card -->
