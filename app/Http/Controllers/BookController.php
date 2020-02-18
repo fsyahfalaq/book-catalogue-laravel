@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -37,9 +39,13 @@ class BookController extends Controller
 
     public function show($id) {
         $book = Book::find($id);
+        $reviews = DB::table('reviews')
+                    ->where('book_id', '=', $id)
+                    ->get();
 
         return view('book.show')
-                ->with('book', $book);
+                ->with('book', $book)
+                ->with('reviews', $reviews);
     }
 
     public function edit($id) {

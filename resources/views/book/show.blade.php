@@ -30,21 +30,40 @@
             Book Reviews
           </div>
           <div class="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            @foreach($reviews as $review)
+            <p>{{ $review->review }}</p>
+            <small class="text-muted">Posted by {{ $review->name }}</small>
             <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">Leave a Review</a>
+            @endforeach
+            <button id="button-review" class="btn btn-success" onclick="showReviewForm();">Leave a Review</button>
+            <form id="form-review" action="/book/review/{{ $book->id }}" method="post" hidden>
+              @csrf
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="form-control">
+              </div>
+                <div class="form-group">
+                <label for="review">Review</label>
+                <textarea name="review" id="review" cols="30" rows="10" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Submit Review</button>
+              </div>
+            </form>
           </div>
         </div>
         <!-- /.card -->
 
       </div>
       <!-- /.col-lg-9 -->
+      <script>
+        function showReviewForm() {
+          const buttonReview = document.getElementById("button-review");
+          const formReview = document.getElementById("form-review");
+
+          buttonReview.hidden = true;
+          formReview.removeAttribute("hidden");
+        }
+      </script>
 
 @endsection
