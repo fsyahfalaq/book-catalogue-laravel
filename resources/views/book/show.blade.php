@@ -13,7 +13,7 @@
             <p class="card-text">
               {{ $book->synopsis }}
             </p>
-               
+            <a href="/book/{{ $book->id }}/edit" class="btn btn-outline-secondary">Edit</a>
           </div>
         </div>
         <!-- /.card -->
